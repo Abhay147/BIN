@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<conio.h>
+void write (void)
+{
+	FILE *fs;
+	struct salary
+	{
+		char name[40],another;
+		int sno,basic,gross,net;
+		long int total;
+	}s;
+	s.sno=1;
+	s.another='y';
+	fs= fopen("Salary.txt","ab+");
+
+	while(s.another=='y')
+
+	{
+
+		fseek(fs,sizeof(s),SEEK_END);
+		printf("Enter your name: ");
+		scanf("%s",s.name);
+		printf("\n Enter your Basic salary: ");
+		scanf("%d",&s.basic);
+		printf("\n Enter your Gross salary: ");
+		scanf("%d",&s.gross);
+		printf("\n Enter your Net salary: ");
+		scanf("%d",&s.net);
+		s.total=s.basic+s.gross+s.net;
+		printf("\nYour total salary is %d",s.total);
+		fwrite(&s,sizeof(s),1,fs);
+		printf("\n\nWould you like to continue?? Reply with Y/N: ");
+		fflush(stdin);
+		scanf("%c",&s.another);
+	       s.sno++;
+
+	}
+
+	fclose(fs);
+	getch();
+}
+void read (void)
+{
+	FILE *fs;
+	struct salary
+	{
+		char name[40],another;
+		int sno,basic,gross,net;
+		long int total;
+	}s;
+	fs = fopen("Salary.txt","rb+");
+	while(fread(&s,sizeof(s),1,fs) == 1)
+	printf("\nSno:%d Name: %s  Basic Pay: %d  Gross Pay: %d  Net Pay: %d  Total: %d",s.sno,s.name,s.basic,s.gross,s.net,s.total);
+	fclose(fs);
+
+}
+void main()
+{      clrscr();
+      read();
+      // write();
+}
+

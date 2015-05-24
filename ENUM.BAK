@@ -1,0 +1,16 @@
+#include<iostream.h>
+//#include<conio.h>
+void main()
+{
+   enum
+   {
+      monday,tuesday,wednesday,thursday,friday,saturday,sunday
+   }day;
+   day=wednesday;
+   if(day==saturday || day==sunday)
+      cout<<"\n Day is a weekend day";
+   else if(day==wednesday)
+      cout<<"\n Day is a hump day middle of the work week";
+  // getch();
+   //return 0;
+}
